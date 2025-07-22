@@ -1,4 +1,3 @@
-
 from fastapi import FastAPI, Request
 from utils import generate_story_with_images
 
