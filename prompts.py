@@ -1,4 +1,21 @@
+IMAGE_PROMPT_TEMPLATE = """
+Lies die folgende Kindergeschichte: {{296901886__response__content}}
 
+Deine Aufgabe: Erstelle so viele Bildbeschreibungen, dass für jede Textseite genau eine Bildbeschreibung zutrifft.
+
+Formatregeln:
+Ab der zweiten regulären Bildbeschreibung:
+Beginne jede Beschreibung mit ||ln|| ||img||  auf der gleichen Zeile. 
+Schreibe am Ende jeder, also auch ab der ersten Seite regulären Bildbeschreibung: **ww**.
+Benutze ausschließlich diese zwei Platzhalter.
+Verwende nicht die Wörter „Bildbeschreibung“ oder „Titelbildbeschreibung“.
+Schreibe auch nicht ||img|| mit einer fortlaufenden Zahl wie beim Input Text. Nur so wie ich es hier schreibe!!
+Lasse 1 Leerzeile Abstand zwischen den Beschreibungen.
+
+
+⬇️ Hier ist der Input Text
+{{296901886__response__content}}
+"""
 STORY_PROMPT_TEMPLATE = """
 Gestalte mir eine Kindergeschichte.
 
