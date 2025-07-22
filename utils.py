@@ -2,9 +2,14 @@
 from prompts import STORY_PROMPT_TEMPLATE, IMAGE_PROMPT_TEMPLATE
 
 def generate_story_with_images(data):
-    # Placeholder: Nutzdaten extrahieren
-    story_text = STORY_PROMPT_TEMPLATE.replace("{{NAME}}", "Laura")
-    story_text = story_text.replace("<<<BLOCKEND>>>", "\n<<<BLOCKEND>>>\n")
+  from .utils import extract_fields  # falls du nicht alles in einer Datei hast
+
+fields = extract_fields(data)
+
+story_text = STORY_PROMPT_TEMPLATE
+story_text = story_text.replace("{{NAME}}", fields.get("name", "Unbekannt"))
+story_text = story_text.replace("<<<BLOCKEND>>>", "\n<<<BLOCKEND>>>\n")
+story_text = story_text.replace("**••••**", fields.get("emotion", "mutig und neugierig"))
 
     # Dummy: 8 Bildbeschreibungen generieren
     for i in range(1, 9):
