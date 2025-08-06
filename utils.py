@@ -39,9 +39,11 @@ def extract_fields(data):
 def generate_story_with_images(data):
     fields = extract_fields(data)
 
-    story_text = STORY_PROMPT_TEMPLATE
-    story_text = story_text.replace("{{NAME}}", fields.get("name", "Unbekannt"))
-    story_text = story_text.replace("<<<BLOCKEND>>>", "\n<<<BLOCKEND>>>\n")
-    story_text = story_text.replace("**••••**", fields.get("emotion", "mutig und neugierig"))
+prompt = STORY_PROMPT_TEMPLATE
+prompt = prompt.replace("{{NAME}}", fields.get("name", "Unbekannt"))
+prompt = prompt.replace("<<<BLOCKEND>>>", "\n<<<BLOCKEND>>>\n")
+prompt = prompt.replace("**••••**", fields.get("emotion", "mutig und neugierig"))
+
+story_text = call_gpt(prompt)
 
     # Dummy: 8 Bild
