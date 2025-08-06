@@ -1,4 +1,5 @@
-from prompts import STORY_PROMPT_TEMPLATE, IMAGE_PROMPT_TEMPLATE
+from prompts import STORY_PROMPT_TEMPLATE
+from .gpt import call_gpt  # wenn du call_gpt in gpt.py hast, sonst direkt importieren
 
 def extract_fields(data):
     answers = data["form_response"]["answers"]
@@ -36,14 +37,16 @@ def extract_fields(data):
 
     return result
 
+
 def generate_story_with_images(data):
     fields = extract_fields(data)
 
-prompt = STORY_PROMPT_TEMPLATE
-prompt = prompt.replace("{{NAME}}", fields.get("name", "Unbekannt"))
-prompt = prompt.replace("<<<BLOCKEND>>>", "\n<<<BLOCKEND>>>\n")
-prompt = prompt.replace("**••••**", fields.get("emotion", "mutig und neugierig"))
+    prompt = STORY_PROMPT_TEMPLATE
+    prompt = prompt.replace("{{NAME}}", fields.get("name", "Unbekannt"))
+    prompt = prompt.replace("<<<BLOCKEND>>>", "\n<<<BLOCKEND>>>\n")
+    prompt = prompt.replace("**••••**", fields.get("emotion", "mutig und neugierig"))
 
-story_text = call_gpt(prompt)
+    # GPT-Call
+    story_text = call_gpt(prompt)
 
-    # Dummy: 8 Bild
+    return story_text
